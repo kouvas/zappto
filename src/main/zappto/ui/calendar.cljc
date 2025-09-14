@@ -121,7 +121,7 @@
      (day-cell day state))])
 
 (defn calendar [state]
-  [:div.max-w-xs.mx-auto.p-4.bg-white.rounded-lg.shadow-sm.border.relative
+  [:div.max-w-xs.mx-auto.p-4.bg-white.rounded-lg.shadow-sm.border
    (calendar-header state)
    (days-header)
    (calendar-grid state)])
