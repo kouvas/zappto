@@ -1,0 +1,9 @@
+{:deps     {:aliases [:dev]}                           ;; from deps.edn aliases
+ :dev-http {8091 {:root             "resources/public"
+                  :host             "0.0.0.0"
+                  :push-state/index "index.html"}}
+ :nrepl    {:port 9001}
+ :builds   {:app
+            {:target  :browser
+             :modules {:main {:init-fn dev/main}}
+             :dev     {:output-dir "resources/public/js"}}}}

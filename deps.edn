@@ -1,0 +1,40 @@
+{:paths ["src/main" "resources"]
+ :deps  {org.clojure/clojure       {:mvn/version "1.12.2"}
+         http-kit/http-kit         {:mvn/version "2.9.0-beta2"}
+         no.cjohansen/replicant    {:mvn/version "2025.06.21"}
+         no.cjohansen/phosphor-clj {:mvn/version "2025.04.16"}
+         metosin/reitit            {:mvn/version "0.9.1"}
+         tick/tick                 {:mvn/version "1.0"}
+         thheller/shadow-cljs      {:mvn/version "3.2.0"}}
+
+ :aliases
+ {:dev
+  {:extra-paths ["src/dev"]
+   :extra-deps  {no.cjohansen/lookup   {:mvn/version "2025.04.12"}
+                 no.cjohansen/dataspex {:mvn/version "2025.08.1"}}}
+  :test
+  {:extra-paths ["test"]
+   :extra-deps  {io.github.cognitect-labs/test-runner {:git/tag "v0.5.1"
+                                                       :git/sha "dfb30dd6"}}
+   :main-opts   ["-m" "cognitect.test-runner"]
+   :exec-fn     cognitect.test-runner.api/test}
+
+  ;; nREPL server for AI to connect to
+  :nrepl
+  {:extra-paths ["test"]
+   :extra-deps  {nrepl/nrepl                    {:mvn/version "1.4.0"}
+                 ch.qos.logback/logback-classic {:mvn/version "1.5.18"}}
+   :jvm-opts    ["-Djdk.attach.allowAttachSelf"]
+   :main-opts   ["-m" "nrepl.cmdline" "--port" "7888"]}
+
+  ;; MCP server configuration (for reference)
+  :mcp
+  {:extra-deps {org.slf4j/slf4j-nop     {:mvn/version "2.0.17"}
+                com.bhauman/clojure-mcp {;; use git repo when using this from container
+                                         :local/root "/Users/vasko/software/clojure-mcp"
+                                         ;;:git/url "https://github.com/bhauman/clojure-mcp.git"
+                                         ;;:git/sha "ba8549078d2946b246ab07091c330e22c8866a2a"
+                                         }}
+   :exec-fn    clojure-mcp.main/start-mcp-server
+   :exec-args  {:port 7888}}
+  }}
