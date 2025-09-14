@@ -7,4 +7,4 @@ The app supports 3 booking workflows:
 
 This is what the app looks like
 
-<img src="./resources/public/replicant.gif" width="350" height="750"/>
+<img src="./resources/public/replicant.gif" width="500" height="1024"/>
